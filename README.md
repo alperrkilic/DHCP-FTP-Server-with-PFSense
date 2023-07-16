@@ -497,15 +497,15 @@ Here are some references I used to gather information and set up my DHCP server.
 
 <!-- Shields & URLS -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/alperrkilic/Parking-Space-Counter-Project.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/alperrkilic/DHCP-FTP-Server-with-PFSense.svg?style=for-the-badge
 [contributors-url]: https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/alperrkilic/Parking-Space-Counter-Project.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/alperrkilic/DHCP-FTP-Server-with-PFSense.svg?style=for-the-badge
 [forks-url]: https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense/network/members
-[stars-shield]: https://img.shields.io/github/stars/alperrkilic/Parking-Space-Counter-Project.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/alperrkilic/DHCP-FTP-Server-with-PFSense.svg?style=for-the-badge
 [stars-url]: https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense/stargazers
-[issues-shield]: https://img.shields.io/github/issues/alperrkilic/Parking-Space-Counter-Project.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/alperrkilic/DHCP-FTP-Server-with-PFSense.svg?style=for-the-badge
 [issues-url]: https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense/issues
-[license-shield]: https://img.shields.io/github/license/alperrkilic/Parking-Space-Counter-Project.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/alperrkilic/DHCP-FTP-Server-with-PFSense.svg?style=for-the-badge
 [license-url]: https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense/blob/master/LICENSE.txt
 
 <!-- Built with Section -->
