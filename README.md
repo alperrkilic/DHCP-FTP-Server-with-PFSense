@@ -209,7 +209,7 @@ A Domain Name System (DNS) turns domain names into IP addresses that allow brows
 Hypertext Transfer Protocol (HTTP) is the foundation of the World Wide Web and is used to load web pages using hypertext links. HTTP is an application layer protocol designed to transfer information between networked devices and runs on top of other layers of the network protocol stack. A typical flow over HTTP involves a client machine making a request to a server and the server then sending a response message.
 ### Static IP
 
-IP address means internet protocol address; An identifying number associated with a particular computer or computer network. When connected to the Internet, the IP address allows computers to send and receive information. Every device has its own unique IP address.
+IP address means internet protocol address; An identifying number associated with a particular computer or computer network. When connected to the Internet, the IP address allows computers to send and receive information. Every device has its own unique IP address. In this project we will use IPv4 which is the 32 bit IP address.
 
 There are four different types of IP addresses: public, private, static, and dynamic. Public and private indicates the location of the network while static and dynamic indicates the permanency of the IP Address.
 
@@ -271,84 +271,139 @@ _Metasploitable machine after getting its IP from DHCP Server_
 
 ### DHCP
 
-Dynamic Host Configuration Protocol (DHCP) is a network protocol used to automate the process of configuring devices on IP networks.
+Dynamic Host Configuration Protocol (DHCP) is a network protocol used to automate the process of configuring devices on IP networks. In this project, we will use DHCP relay on PFSense Firewall since broadcasting is done only within the subnet, we have to indicate the server machine as distributor so that the other machines can get their IP's.
 
 [![dhcp_server_running][dhcp_server_running]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
 
+
 ### Router
+
+A router is a device that connects two or more packet switched networks or subnets. Layer 3 switch's can also act as routers.
+
+One of the primary jobs of a router is to assign IP addresses to the computers on a home network. The router has a “pool” of IP addresses that it keeps track of. When a computer connects to it and asks for an IP address, the router picks an IP address from the pool and assigns it to the computer. The router makes sure that two computers are not assigned the same IP address. This process of computers asking for an IP address from the router is called “dynamic” IP address assignment. It uses a network protocol called DHCP (Dynamic Host Configuration Protocol).
+
+
+[![router][router]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
 
 
 ### Switch
 
+A network switch is a physical device that operates at the Data Link layer -- Layer 2 of the Open Systems Interconnect (OSI) model. It receives packets sent by devices connected to physical ports and forwards them to devices. intended to reach the packets. Switches can also operate at the Network Layer (Layer 3) where routing occurs. In summary, the switch forwards packets to the devices that the packets are intended to send and connects the local devices with the router.
+
+[![switch_vs_router][switch_vs_router]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+
+_Difference between switch and router._
 
 ### Gateway
 
+A gateway is a node in a computer network that provides an important stopping point for data to or from other networks. In this project, gateways are 10.10.10.2, 20.20.20.2, and 30.30.30.2 which are the IP's of the LAN networks.
 
+If we compare the router and the gateway in simple terms, a router is a type of gateway that focuses specifically on routing network traffic. However, the Gateway can also refer to other types of devices that act as entry points between networks, such as firewall gateways or proxy servers.
+
+[![gateway][gateway]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
 
 ### FTP
+
+The term file transfer protocol (FTP) refers to a process that involves transferring files between devices over a network. The process works when one party allows the other to send or receive files over the Internet. In our project, Ubuntu Server (30.30.30.3) will be our FTP server where we upload or download files
+
+[![ftp][ftp]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_Connecting via FTP to Ubuntu Server_
+
+[![ftp_send][ftp_send]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_Sending file through FTP_
 
 
 ### TCP Handshake
 
+The Three-Way Handshake or TCP 3-way handshake is a process used to establish a connection between a server and a client in a TCP/IP network. It is a three-step process that requires both the client and server to exchange synchronization and acknowledgment packets before the actual data communication process begins.
+
+
+[![tcp_handshake][tcp_handshake]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+
+_TCP Handshake Scheme_
 
 <!-- Setting Up -->
 ## Setting Up
 
-[![Screen Shots][parking-spaces-to-be-checked]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+After downloading all our virtual machines, we can now start setting up your DHCP server. The first thing we can do is connect the adapters. we will connect 3 Host-only adapters and one NAT network. 
 
-_Places that are considered as parking spaces manually selected with ParkingSpacePicker.py_
+[![virtual-adapters][virtual-adapters]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_Virtual Adapters IP's 10.10.10.1, 20.20.20.1, 30.30.30.1_
+
+[![pfsense-vbox][pfsense-vbox]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_Adapters that are connected to PFSense Virtual Machine_
+
+[![windows-vbox][windows-vbox]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_Adapter 2 is connected to windows which has the IP of 10.10.10.1_
+
+[![metasploitable-vbox][metasploitable-vbox]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_Adapter 3 is connected to Metasploitable Machine which has the IP of 20.20.20.1_
+
+[![ubuntu-server-vbox][ubuntu-server-vbox]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_Adapter 4 is connected to Ubuntu Server Machine which has the IP of 30.30.30.1 , this will be our DHCP server_
+
+Now we need to configure the LAN interface on our PFSense machine, we have to set it to 10.10.10.2 because the adapter has 10.10.10.1
 
 
-<tr>
-    <td>
-      <img src="readme-images/single-parking-frame.png"></img>
-    </td>
-    <td>
-      <img src="readme-images/single-parking-frame-without-rectangle.png"></img>
-    </td>
-    
-</tr>
+[![pfsense_machine][pfsense_machine]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
 
-_After selecting the parking spaces, storing them into CarParkPos file and splitting each frame that are selected with ParkingSpacePicker.py_
+_You can see the LAN interface as 10.10.10.2 the other LAN1 and SERVER is not configured yet_
 
-[![Screen Shots][blurred-img]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+In order to access to PFSense interface on Web browser, now we can assign windows IP as 10.10.10.5 (5 can be different) and give default gateway as 10.10.10.2 to connect firewall. Note that subnet-mask must be 255.255.255.0 since the first 24 bits will remain constant
 
-_Blurring the image after making it grayscale_
+[![interfaces][interfaces]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
 
-[![Screen Shots][threshold-img]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+After opening 10.10.10.2 and connecting to our PFSense, (assuming you have completed the sign up operations) now we will add new interfaces for our other LAN's which are going to be 20.20.20.2 and 30.30.30.2 (LAN1 -> 20.20.20.2 , SERVER -> 30.30.30.2)
 
-_Converting image into a binary image with Thresholding_
+[![interfaces-2][interfaces-2]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
 
-[![Screen Shots][dilated-img]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+_After setting up these LAN's you should see them running_
 
-_After thresholding, to remove unwanted white pixels we are dilating the threshold image_
+After that you can write Rules to determine which packages will be allowed between these subnets.
 
-[![Screen Shots][median-img]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+[![writing_policy][writing_policy]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
 
-_To adjust the thickness, we're generating the median image_
+_For every LAN you will specify the source and destination if you want to allow every package just make the source as the interface name and destination any -> source: LAN1 net, destination: any_
 
-<tr>
-    <td>
-      <img src="readme-images/single-frame-after-dilation-empty-space.png">
-      </img>
-    </td>
-    <td>
-      <img src=" readme-images/single-frame-after-dilation-car-parked.png">
-      </img>
-    </td>
-</tr>
+[![ping_ubuntu][ping_ubuntu]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
 
-_After dilation and median images, it's evident whether there's a car in a parking spot or not._
+_After writing policy check whether you can ping other LAN's or not since on default options you cannot ping another subnet, in this example 30.30.30.3, from 20.20.20.0/24 subnet_
 
-[![Screen Shots][spaces-with-counters]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
 
-_Now, on our original dilated image, we can count the white pixels and display their numbers on the image. If a parking space is empty, the number of white pixels is expected to be less than 900. However, if the number of white pixels is more than 900, it is an indication that there is a car present in the parking space._
+[![ubuntu-server-static][ubuntu-server-static]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
 
-[![Screen Shots][product-screenshot]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+_Configure Ubuntu Server's IP as static and give it 30.30.30.3 since 30.30.30.1 is adapter and 30.30.30.2 is the SERVER. To configure it's static ip refer to:_ 
 
-_Finally, we count the number of available parking spaces and draw rectangles around each parking spot. If a parking space is available, we mark it with a green color, and if it is occupied, we mark it with a red color._
+<p align="right"><a href="#ubuntu-server-static-ip-configuration">Ubuntu Server Static IP Configuration</a></p>
 
-See the [main.py](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense/blob/master/main.py) for the detailed explanations on the code.
+[![ubuntu_ifconfig][ubuntu_ifconfig]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_After setting it's static IP check whether it'is set correctly, above is set correctly_
+
+At this point we can start configurating our DHCP server at Ubuntu Server. Refer to Prerequisites to download DHCP server and FTP server at the same time. FTP won't be explained detailed since it's not that hard to set it up
+
+<p align="right"><a href="#prerequisites">Prerequisites</a></p>
+
+
+Now with your text editor open /etc/dhcp/dhcpd.conf (I am using nano)
+
+[![dhcpd.conf][dhcpd.conf]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_Here you will indicate the DHCP configurations for each subnet. you can determine range, subnet-mask, routers, broadcast-address._
+
+
+[![isc-dhcp-server][isc-dhcp-server]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_You should also write the name of the interface in /etc/default/isc-dhcp-server (enp0s3 in this case)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -376,10 +431,8 @@ Project Link: [https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense](http
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Creating a project like the Parking Space Counter requires a lot of research, experimentation, and dedication. I would like to take this opportunity to acknowledge and thank the many individuals, channels, and websites that helped me along the way. Without their guidance and support, this project would not have been possible. In particular, I would like to recommend the following channels and websites for their invaluable resources and contributions to the field of computer vision and image processing.
+Here are some references I used to gather information and set up my DHCP server.
 
-* [Computer Vision Zone](https://www.computervision.zone/)
-* [Murtaza's Workshop - Robotics and AI](https://www.youtube.com/@murtazasworkshop)
 * [ChatGPT](https://chat.openai.com/chat)
 * [Choose an Open Source License](https://choosealicense.com)
 * [Img Shields](https://shields.io)
@@ -401,6 +454,7 @@ Creating a project like the Parking Space Counter requires a lot of research, ex
 [license-shield]: https://img.shields.io/github/license/alperrkilic/Parking-Space-Counter-Project.svg?style=for-the-badge
 [license-url]: https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense/blob/master/LICENSE.txt
 
+<!-- Built with Section -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/bayram-alper-kilic/
 [ubuntu]: https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white
@@ -416,35 +470,46 @@ Creating a project like the Parking Space Counter requires a lot of research, ex
 [virtualbox]: https://img.shields.io/badge/VirtualBox-00000?style=for-the-badge&logo=virtualbox&logoColor=white&color=blue
 [virtualbox-url]: https://www.virtualbox.org/
 
-<!-- Images -->
-
-<!-- Static IP section -->
-
+<!-- Terminology Section -->
+<!-- Static IP -->
 [metasploitable-static]: readme-images/Static-IP/metasploitable_static_ip.png
 [windows-static]: readme-images/Static-IP/windows_static_ip_1.png
 [windows-static-2]: readme-images/Static-IP/windows_static_ip_2.png
 [ubuntu-server-static]: readme-images/Static-IP/ubuntu-server-static-ip.png
-
-
 <!-- Broadcasting -->
-
 [before-getting-ip]: readme-images/DHCP/Working/before_getting_ip.png
 [getting-ip]: readme-images/DHCP/Working/getting_ip.png
 [after-getting-ip]: readme-images/DHCP/Working/after_getting_ip.png
-
 <!-- DHCP -->
-
 [dhcp_server_running]: readme-images/DHCP/Working/dhcp_server_running.png
+<!-- Router -->
+[router]: readme-images/Terminology/router.png
+<!-- Switch -->
+[switch_vs_router]: readme-images/Terminology/switch_vs_router.png
+<!-- Gateway -->
+[gateway]: readme-images/Terminology/gateway.jpg
+<!-- FTP -->
+[ftp]: readme-images/FTP/connect_via_ftp.png
+[ftp_send]: readme-images/FTP/ftp_send.png
+<!-- TCP Handshake -->
+[tcp_handshake]: readme-images/Terminology/tcp_handshake.png
 
-
+<!-- Setting Up -->
 [product-screenshot]: readme-images/DHCP/Working/PFSense-connection.png
-[single-parking-frame]: readme-images/single-parking-frame.png
-[single-no-rectangle]: readme-images/single-parking-frame-without-rectangle.png
-[blurred-img]: readme-images/Blurred-image.png
-[threshold-img]: readme-images/Threshold-image.png
-[dilated-img]: readme-images/Dilated-thicker-image.png
-[median-img]: readme-images/Median-image.png
-[single-dilated-parked]: readme-images/single-frame-after-dilation-car-parked.png
-[single-dilated-empty]: readme-images/single-frame-after-dilation-empty-space.png
-[spaces-with-counters]: readme-images/Spaces-with-counted-pixels.png
-[parking-spaces-to-be-checked]: readme-images/parking-spaces-to-be-checked.png
+[pfsense-vbox]: readme-images/DHCP/VirtualBox/PFSense_connected_adapters.png
+[metasploitable-vbox]: readme-images/DHCP/VirtualBox/metasploitable_adapter.png
+[ubuntu-server-vbox]: readme-images/DHCP/VirtualBox/ubuntu_server_adapter.png
+[windows-vbox]: readme-images/DHCP/VirtualBox/windows_adapter.png
+[virtual-adapters]: readme-images/DHCP/VirtualBox/virtual-adapters.png
+[pfsense_machine]: readme-images/DHCP/Working/PFSense.png
+[dhcp_relay]: readme-images/DHCP/PFSense/dhcp_relay.png
+[interfaces]: readme-images/DHCP/PFSense/interfaces.png
+[interfaces-2]: readme-images/DHCP/PFSense/interfaces-2.png
+[writing_policy]: readme-images/DHCP/PFSense/writing_policy.png
+[ping_ubuntu]: readme-images/DHCP/Working/ping_ubuntu.png
+[ubuntu_ifconfig]: readme-images/DHCP/Working/ubuntu-server.png
+[dhcpd.conf]: readme-images/DHCP/Working/dhcpd.conf.png
+[isc-dhcp-server]: readme-images/DHCP/Working/isc-dhcp-server.png
+
+
+
