@@ -405,6 +405,49 @@ _Here you will indicate the DHCP configurations for each subnet. you can determi
 
 _You should also write the name of the interface in /etc/default/isc-dhcp-server (enp0s3 in this case)_
 
+After these steps you should see your DHCP server as active and running after restarting it. You can see it with typing these commands into terminal
+
+   ```sh
+    systemctl restart isc-dhcp-server
+   ```
+   ```sh
+    systemctl status isc-dhcp-server
+   ```
+
+[![dhcp-server-running][dhcp-server-running]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_If not working it will seem as this:_
+
+[![dhcp-server-not-running][dhcp-server-not-running]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_If there's a syntax error etc. in your dhcpd.conf file you can use this command and debug it:_
+
+   ```sh
+    journalctl -xe
+   ```
+
+Lastly you have to ensure that you are using DHCP Relay since broadcasting is done within a subnet, you can not directly use DHCP to do that, from your windows open Firewall interface and configure it as below. Make sure you've checked the enable box
+
+[![dhcp-relay][dhcp-relay]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_With this configurations, your DHCP server is set up now check whether a machine gets its IP dynamically while both Ubuntu Server and PFSense is running_
+
+[![before-getting-ip][before-getting-ip]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_Before getting IP_
+
+[![getting-ip][getting-ip]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_Restarting network to get the IP_
+
+[![after-getting-ip][after-getting-ip]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
+_After getting IP_
+
+And also now you can use your Ubuntu Server as Cloud and you can upload and download files via FTP and determine which LAN's will have access to this FTP server via Firewall
+
+[![ftp-interface][ftp-interface]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -510,6 +553,10 @@ Here are some references I used to gather information and set up my DHCP server.
 [ubuntu_ifconfig]: readme-images/DHCP/Working/ubuntu-server.png
 [dhcpd.conf]: readme-images/DHCP/Working/dhcpd.conf.png
 [isc-dhcp-server]: readme-images/DHCP/Working/isc-dhcp-server.png
+[dhcp-server-running]: readme-images/DHCP/Working/dhcp_server_running.png
+[dhcp-server-not-running]: readme-images/DHCP/Not-working/dhcp-status.png
+[dhcp-relay]: readme-images/DHCP/PFSense/dhcp_relay.png
+[ftp-interface]: readme-images/FTP/ftp_interface.png
 
 
 
