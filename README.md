@@ -476,7 +476,18 @@ Project Link: [https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense](http
 
 Here are some references I used to gather information and set up my DHCP server.
 
-* [ChatGPT](https://chat.openai.com/chat)
+* [Network](https://fcit.usf.edu/network/chap1/chap1.htm)
+* [DNS](https://www.fortinet.com/resources/cyberglossary/what-is-dns#:~:text=What%20is%20DNS%3F,use%20to%20locate%20the%20device.)
+* [HTTP](https://www.cloudflare.com/learning/ddos/glossary/hypertext-transfer-protocol-http/)
+* [IP](https://www.investopedia.com/terms/i/ip-address.asp)
+* [DHCP](https://efficientip.com/glossary/what-is-dhcp-and-why-is-it-important/)
+* [Router-1](https://www.cloudflare.com/learning/network-layer/what-is-a-router/)
+* [Router-2](https://www.lmi.net/support/common/dsl-support/ip-addresses/#:~:text=One%20of%20the%20primary%20jobs,assigns%20it%20to%20the%20computer.)
+* [Switch](https://www.lifewire.com/difference-between-router-and-switch-5207135#:~:text=Switches%20expand%20and%20optimize%20a,are%20connected%20to%20the%20switch.)
+* [Gateway](https://whatismyipaddress.com/gateway)
+* [FTP](https://www.investopedia.com/terms/f/ftp-file-transfer-protocol.asp)
+* [Restarting Network](https://www.layerstack.com/resources/tutorials/How-to-restart-Network-Interface-or-Network-Adapter-on-Linux-and-Windows-Cloud-Servers)
+* [FTP Set Up](https://www.hostinger.com/tutorials/how-to-setup-ftp-server-on-ubuntu-vps/)
 * [Choose an Open Source License](https://choosealicense.com)
 * [Img Shields](https://shields.io)
 
