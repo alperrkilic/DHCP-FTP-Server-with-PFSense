@@ -1,0 +1,11 @@
+# This is the network config written by 'subiquity'
+network:
+  version: 2
+#  renderer: NetworkManager
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      addresses: [30.30.30.3/24]
+      gateway4: 30.30.30.2
+      nameservers:
+          addresses: [8.8.8.8, 8.8.4.4]
