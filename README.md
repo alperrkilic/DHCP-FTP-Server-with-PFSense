@@ -88,7 +88,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense)
+<div align="center">
+    <a href="https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense">
+      <img src="readme-images/Diagram.png" alt="Logo" width="450" height="500">
+    </a>
+</div>
+
+
 
 The DHCP Server for Ubuntu with PFsense Firewall is a project designed to provide efficient and reliable dynamic IP address allocation within your network infrastructure. This system combines the power and flexibility of Ubuntu Server, a widely used Linux distribution, with the robust security features of PFsense, a popular open-source firewall.
 
@@ -549,7 +555,7 @@ Here are some references I used to gather information and set up my DHCP server.
 [tcp_handshake]: readme-images/Terminology/tcp_handshake.png
 
 <!-- Setting Up -->
-[product-screenshot]: readme-images/DHCP/Working/PFSense-connection.png
+[product-screenshot]: readme-images/Diagram.png
 [pfsense-vbox]: readme-images/DHCP/VirtualBox/PFSense_connected_adapters.png
 [metasploitable-vbox]: readme-images/DHCP/VirtualBox/metasploitable_adapter.png
 [ubuntu-server-vbox]: readme-images/DHCP/VirtualBox/ubuntu_server_adapter.png
