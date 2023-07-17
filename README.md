@@ -90,7 +90,7 @@
 
 <div align="center">
     <a href="https://github.com/alperrkilic/DHCP-FTP-Server-with-PFSense">
-      <img src="readme-images/Diagram.png" alt="Logo" width="450" height="500">
+      <img src="readme-images/Blank-diagram.png" alt="Logo" width="450" height="500">
     </a>
 </div>
 
