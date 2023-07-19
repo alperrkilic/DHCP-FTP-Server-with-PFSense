@@ -128,7 +128,7 @@ This project was built using the following components:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-The DHCP server setup in this project includes the configuration of three separate LANs. Within one of these LANs, an IP block of 30.30.30.2 is allocated, the Ubuntu Server acts as the DHCP server, and a static IP address of 30.30.30.3 is assigned. PFsense firewall runs on IP address 10.0.10.10.2.
+The DHCP server setup in this project includes the configuration of three separate LANs. Within one of these LANs, an IP block of 30.30.30.2 is allocated, the Ubuntu Server acts as the DHCP server, and a static IP address of 30.30.30.3 is assigned. PFsense firewall runs on IP address 10.10.10.2.
 
 The purpose of this setup is to enable Ubuntu Server to distribute IP addresses from 30.30.30.3 range to devices connected to other LANs. With the implementation of this DHCP server solution, IP address allocation becomes automatic, eliminating the need for manual configuration on each device.
 
